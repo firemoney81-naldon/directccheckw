@@ -1,23 +1,601 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+    <style>
+        /* 기본 스타일 및 부드러운 색감 정의 */
+        body { 
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif; 
+            line-height: 1.9; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f4f7f6; 
+            color: #2d3748; 
+            letter-spacing: -0.01em;
+        }
+        header, section, footer { 
+            max-width: 1000px; 
+            margin: 30px auto; 
+            padding: 35px; 
+            background: #ffffff; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+            border: 1px solid #edf2f7;
+        }
+        h1, h2, h3 { 
+            color: #1a365d; 
+            font-weight: 700; 
+            line-height: 1.4; 
+        }
+        h1 { 
+            font-size: 2.4em; 
+            text-align: center; 
+            padding: 25px 0; 
+            border-bottom: 3px solid #e2e8f0; 
+            margin-bottom: 25px; 
+        }
+        h2 { 
+            font-size: 1.8em; 
+            border-left: 6px solid #3182ce; 
+            padding-left: 15px; 
+            margin-top: 45px; 
+            margin-bottom: 20px;
+        }
+        h3 { 
+            font-size: 1.35em; 
+            color: #2b6cb0; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+            background-color: #ebf8ff;
+            padding: 12px 18px;
+            border-radius: 8px;
+        }
+        p, ul, ol { 
+            font-size: 1.05em; 
+            line-height: 1.85; 
+            margin-bottom: 20px; 
+            color: #4a5568;
+        }
+        ul, ol { 
+            padding-left: 25px; 
+            margin-bottom: 25px; 
+        }
+        li { 
+            margin-bottom: 10px; 
+        }
+        strong { 
+            font-weight: 700; 
+            color: #2b6cb0; 
+        }
+
+        /* 테이블 스타일 */
+        table { 
+            width: 100%; 
+            border-collapse: separate; 
+            border-spacing: 0; 
+            margin: 25px 0; 
+            background-color: #ffffff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        th, td { 
+            padding: 16px; 
+            text-align: center; 
+            font-size: 1em; 
+            border-bottom: 1px solid #edf2f7;
+            border-right: 1px solid #edf2f7;
+        }
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        th { 
+            background: #f7fafc; 
+            color: #2d3748; 
+            font-weight: 700; 
+            vertical-align: middle; 
+        }
+        td { 
+            background-color: #ffffff; 
+            vertical-align: middle; 
+            color: #4a5568;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        /* CTA 버튼 스타일 */
+        .btn-cta {
+            display: block;
+            width: fit-content;
+            padding: 16px 35px;
+            margin: 35px auto;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff;
+            font-size: 1.15em;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-cta:hover {
+            background: linear-gradient(135deg, #2b6cb0, #1a365d);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(49, 130, 206, 0.4);
+        }
+
+        /* 내비게이션 스타일 */
+        nav { 
+            background: #ffffff; 
+            padding: 15px 0; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+            border-radius: 12px;
+            max-width: 1000px;
+            margin: 20px auto;
+            border: 1px solid #edf2f7;
+        }
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            margin: 0; 
+        }
+        nav li { 
+            margin: 5px 15px; 
+        }
+        nav a { 
+            color: #4a5568; 
+            text-decoration: none; 
+            font-weight: 600; 
+            padding: 8px 16px; 
+            transition: all 0.2s ease; 
+            border-radius: 8px; 
+            font-size: 0.95em;
+        }
+        nav a:hover { 
+            color: #3182ce; 
+            background-color: #ebf8ff; 
+            text-decoration: none; 
+        }
+
+        /* 이미지 및 차트 시각화 스타일 */
+        .main-image { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 14px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05); 
+        }
+        .chart-container { 
+            background-color: #f7fafc; 
+            padding: 30px; 
+            border-radius: 14px; 
+            margin: 30px 0; 
+            border: 1px solid #e2e8f0;
+        }
+        .chart-title { 
+            font-size: 1.25em; 
+            color: #1a365d; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+            text-align: center; 
+        }
+        .visual-bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .bar-group {
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+        }
+        .bar-label {
+            width: 150px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .bar-track {
+            flex-grow: 1;
+            background-color: #e2e8f0;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4299e1, #3182ce);
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+        }
+        .bar-value {
+            width: 100px;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: right;
+        }
+
+        /* 폼 스타일 */
+        form { 
+            background: #ffffff; 
+            padding: 35px; 
+            border-radius: 16px; 
+            border: 1px solid #e2e8f0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .form-section-title {
+            font-size: 1.2em;
+            color: #2b6cb0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #4a5568; 
+            font-size: 0.95em;
+        }
+        input[type="text"], input[type="tel"], input[type="number"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #2d3748;
+            background-color: #f7fafc;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="tel"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+            border-color: #3182ce;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+            outline: none;
+        }
+        textarea { 
+            resize: vertical; 
+            height: 120px; 
+        }
+        .required-mark {
+            color: #e53e3e;
+            margin-left: 3px;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #718096;
+            border-top: 1px solid #edf2f7;
+            margin-top: 50px;
+            padding: 25px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header, section, footer { 
+                padding: 20px; 
+                margin: 15px auto; 
+            }
+            h1 { 
+                font-size: 1.8em; 
+            }
+            h2 { 
+                font-size: 1.4em; 
+            }
+            h3 {
+                font-size: 1.15em;
+            }
+            nav ul { 
+                flex-direction: column; 
+                align-items: center;
+            }
+            nav li { 
+                margin: 5px 0; 
+            }
+            .btn-cta { 
+                width: 100%; 
+                padding: 15px; 
+                font-size: 1.1em;
+            }
+            .bar-label {
+                width: 100px;
+                font-size: 0.85em;
+            }
+            .bar-value {
+                width: 80px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+
+    <!-- Schema.org Product/Offer & FAQ Page Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": "더 뉴 스파크 보험료 비교 가이드",
+          "description": "2026년 최신 쉐보레 더 뉴 스파크 자동차 보험료 연령대별 평균 가격 분석 및 다이렉트 최저가 요금제 비교 추천 정보",
+          "brand": {
+            "@type": "Brand",
+            "name": "쉐보레 더 뉴 스파크"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://ins-check.reliabledone.com",
+            "priceCurrency": "KRW",
+            "price": "0",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "더 뉴 스파크 보험료 평균 가격은 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "더 뉴 스파크의 연간 평균 보험료는 가입자의 연령에 따라 크게 다릅니다. 만 30세 이상 무사고 운전 경력자의 경우 평균 40만원에서 65만원 수준이지만, 20대 초반 사회초년생의 첫차 가입 시에는 평균 130만원에서 200만원 대까지 상승할 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "스파크 보험료가 경차임에도 비싸게 느껴지는 이유가 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "경차는 취등록세나 주차비 등 세제 혜택은 우수하나, 차량의 자차 가액 대비 수리 비용 부담이 있고 초기 운전자 비율이 높아 손해율이 다소 높게 잡히는 경향이 있어 다이렉트 할인 특약을 적극적으로 신청하는 것이 중요합니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>더 뉴 스파크 보험료 완전 정복: 2026년 연령별 평균 비교 및 다이렉트 최저가 요금 가이드</h1>
+        <p>쉐보레의 대표 경차 더 뉴 스파크의 자동차 보험료가 나이와 운전 경력, 그리고 보험사 브랜드별로 얼마나 다른지 철저하게 분석합니다. 다이렉트 비교를 통해 가장 저렴하게 가입하는 실질적인 방법을 확인해 보세요.</p>
+        <a href="#consultation" class="btn-cta">나의 맞춤 보험료 실시간 견적 받아보기</a>
+    </header>
+
+    <nav aria-label="본문 바로가기 링크">
+        <ul>
+            <li><a href="#intro">연령별 평균 보험료</a></li>
+            <li><a href="#models">모델별 유지비 차이</a></li>
+            <li><a href="#direct">다이렉트 절약법</a></li>
+            <li><a href="#community">커뮤니티 후기 분석</a></li>
+            <li><a href="#ai-tech">AI 활용 자가 계산</a></li>
+            <li><a href="#consultation">무료 맞춤 컨설팅</a></li>
+        </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <section id="intro">
+        <h2>1. 더 뉴 스파크 보험료 2026년 기준 연령대별 평균 분석과 예상 금액</h2>
+        <p>자동차 보험에 가입할 때 경차라는 타이틀만 보고 무조건 저렴할 것이라 기대하곤 합니다. 하지만 더 뉴 스파크 보험료는 가입하는 주체의 연령, 신규 가입 여부, 운전 경력에 따라 상당한 가격 격차가 발생합니다. 특히 2026년은 교통 환경 변화와 보험 요율 개정으로 인해 나이대별 세부 요금제가 다양하게 설정되어 있으므로 명확한 계산과 분석이 요구됩니다.</p>
+        
+        <h3>1-1. 20대 초반 및 사회초년생 (만 21세에서 만 24세) 첫차 가입 요금</h3>
+        <p>대학생이나 갓 직장 생활을 시작한 20대 초반 사회초년생이 본인 단독 명의로 더 뉴 스파크 보험료를 신규 신청하는 경우, 예상되는 연간 비용은 대략 140만원에서 200만원 선에 달합니다. 통계적으로 이 연령대는 사고 발생 확률(손해율)이 가장 높게 책정되어 있기 때문입니다. 만약 군대 운전병 경력이나 해외 운전 경력과 같은 할인 요건이 없다면 초기 가입 단계에서 금액적 부담을 강하게 느끼게 됩니다. 이 시기에는 부모님 밑으로 피보험자 범위를 가족 한정이나 지정 1인으로 묶어 등록하는 방식을 적극 고려해야 비용을 획기적으로 낮출 수 있습니다.</p>
+
+        <h3>1-2. 20대 후반 (만 26세 이상) 운전 경력자 요금</h3>
+        <p>만 26세를 기점으로 대다수의 다이렉트 보험사들은 요율 구간을 크게 하향 조정합니다. 이때부터 더 뉴 스파크 보험료 평균은 대략 90만원에서 130만원 수준으로 감소하게 됩니다. 무사고 기간을 2년에서 3년 이상 유지했다면 추가적인 할인을 받아 80만원대까지 진입할 수 있습니다. 인터넷 온라인 사이트를 통해 개별 조회를 해보면 만 26세 전후로 가격이 가파르게 낮아지는 것을 명확히 확인할 수 있습니다.</p>
+
+        <h3>1-3. 30대 및 40대 이상 안정적인 가입 요금</h3>
+        <p>만 30세 이상 가입자로 분류되면 쉐보레 더 뉴 스파크 보험료는 가장 안정적이고 저렴한 수준으로 진입합니다. 평균적인 연간 견적 금액은 45만원에서 65만원 내외로 형성됩니다. 이 연령대 구간에서는 본인 1인 한정 혹은 부부 한정 특약 종류를 적절히 활용하고 마일리지 환급 혜택까지 더하면 실제 최종 지출되는 실질 요금은 40만원 초반대까지도 내려갑니다. 경차 고유의 뛰어난 차량가액 방어와 결합되어 가장 가성비 높은 차량 유지가 가능해지는 최적의 구간입니다.</p>
+
+        <div class="chart-container">
+            <h4 class="chart-title">연령대별 연간 평균 보험료 흐름 (2026년 기준)</h4>
+            <div class="visual-bar-chart">
+                <div class="bar-group">
+                    <span class="bar-label">만 21세 신규</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 90%;"></div></div>
+                    <span class="bar-value">약 180만원</span>
+                </div>
+                <div class="bar-group">
+                    <span class="bar-label">만 24세 신규</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 75%;"></div></div>
+                    <span class="bar-value">약 150만원</span>
+                </div>
+                <div class="bar-group">
+                    <span class="bar-label">만 26세 무사고</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 50%;"></div></div>
+                    <span class="bar-value">약 100만원</span>
+                </div>
+                <div class="bar-group">
+                    <span class="bar-label">만 30세 이상</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 28%;"></div></div>
+                    <span class="bar-value">약 55만원</span>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 0.9em; color: #718096; margin-top: 15px;">해당 지표는 표준 담보(대인배상 무한, 대물배상 5억원, 자기차량손해 포함) 기준이며 개인별 세부 조건에 따라 차이가 있습니다.</p>
+        </div>
+    </section>
+
+    <section id="models">
+        <h2>2. 쉐보레 경차 세부 모델별 자차 요금 차이점 및 종합 장단점</h2>
+        <p>더 뉴 스파크는 단종 이전까지 다양한 파생 트림과 연식 모델이 판매되었습니다. 세부 트림(LS, LT, 프리미어 등)의 가격 및 첨단 능동 안전장치 탑재 여부에 따라 자차 보험료 산정의 기초가 되는 차량 가액이 다르게 평가됩니다. 또한 이전 세대 모델들과 비교해 볼 때 경차 보험 요율이 다르게 적용되기도 합니다.</p>
+
+        <h3>2-1. 모델별 자차 가격 변동 및 차량가액 비교</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>차량 모델명</th>
+                    <th>적용 연식</th>
+                    <th>평균 중고 시세</th>
+                    <th>차량가액 기준 연간 자차료</th>
+                    <th>차량 등급 및 수리비 평가</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>더 뉴 스파크 프리미어</td>
+                    <td>2020년 ~ 2022년</td>
+                    <td>800만원 ~ 1000만원</td>
+                    <td>중간 수준 (안전장치 탑재)</td>
+                    <td>전방 충돌 완화 장치로 특약 할인 적용</td>
+                </tr>
+                <tr>
+                    <td>더 뉴 스파크 LS / LT</td>
+                    <td>2018년 ~ 2021년</td>
+                    <td>600만원 ~ 800만원</td>
+                    <td>보통 수준 (일반 트림)</td>
+                    <td>기본적인 수리비 지수 우수</td>
+                </tr>
+                <tr>
+                    <td>더 넥스트 스파크</td>
+                    <td>2015년 ~ 2018년</td>
+                    <td>400만원 ~ 650만원</td>
+                    <td>상대적으로 저렴함</td>
+                    <td>연식 누적으로 자차 가액 하락, 보험료 절감</td>
+                </tr>
+                <tr>
+                    <td>마티즈 크리에이티브</td>
+                    <td>2009년 ~ 2011년</td>
+                    <td>150만원 ~ 250만원</td>
+                    <td>매우 낮음 (일부 자차 제외)</td>
+                    <td>자차 보장 제외 시 연간 요금 최저 도달</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2-2. 더 뉴 스파크 보험 유지 측면의 장점과 단점</h3>
+        <p><strong>장점:</strong> 더 뉴 스파크는 동급 경차 중에서도 차체 강성이 매우 단단하게 설계된 것으로 유명합니다. 이 덕분에 사고 시 탑승자 상해 가능성이 상대적으로 낮아 상해 의료비 요율 산정에 이점이 있습니다. 또한 사각지대 경고 시스템, 전방 충돌 경고 시스템 및 차선이탈 경고 시스템이 장착된 프리미어 등급 모델의 경우 첨단 안전장치 장착 특약을 신청해 연간 요금을 추가로 줄일 수 있는 장단점이 뚜렷하게 발현됩니다.</p>
+        <p><strong>단점:</strong> 쉐보레 부품의 단가는 국산 타 브랜드 경차인 모닝이나 캐스퍼 등에 비해 약간 높은 편입니다. 수리비 지수가 높게 측정될 경우 대물배상이나 자기차량손해 항목의 기본 요율이 소폭 상승하게 됩니다. 따라서 작은 손상은 보험 처리보다 개인 부담으로 해결하는 것이 향후 할증 방지에 유리할 수 있습니다.</p>
+    </section>
+
+    <section id="direct">
+        <h2>3. 다이렉트 인터넷 가입을 통한 저렴한곳 및 최저가 달성 방법</h2>
+        <p>동일한 차량과 동일한 운전자 조건이라도 대면 오프라인 채널을 통하느냐, 혹은 다이렉트 온라인 인터넷 웹사이트를 통하느냐에 따라 발생하는 수수료 차이가 상당합니다. 설계사 마진이나 대리점 임대료 등의 고정비가 제외되는 다이렉트 채널의 요금제는 평균적으로 15%에서 20% 가량 저렴하다는 차이점을 보입니다.</p>
+
+        <h3>3-1. 다이렉트 브랜드별 핵심 상품 비교 포인트</h3>
+        <p>국내 대형 손해보험 브랜드인 삼성화재, 현대해상, DB손해보험, KB손해보험 등은 각각의 특화된 주행거리 할인 구간과 모바일 어플 전용 이벤트를 제공하고 있습니다. 예를 들어 1년간 운행 거리가 매우 짧다면 마일리지 환급 특약의 할인 구간이 가장 넓은 회사를 지정해야 실질적인 최종 비용을 아낄 수 있습니다. 반면 고속도로 장거리 출퇴근이 많아 연간 주행거리가 15000킬로미터를 상회한다면, 주행거리 환급 대신 티맵 안전운전 점수나 네이버지도 안전운전 할인율이 높은 브랜드를 추천합니다.</p>
+
+        <h3>3-2. 반드시 챙겨야 할 다이렉트 할인 특약 종류</h3>
+        <ul>
+            <li><strong>마일리지 연동 특약:</strong> 연간 약정된 주행거리 이하로 운행 시 최종 정산을 거쳐 납부했던 금액 중 일부를 환급해 줍니다. 출퇴근 거리가 짧은 경차 이용자에게 제일 유용한 옵션입니다.</li>
+            <li><strong>안전운전 점수 특약:</strong> 티맵(Tmap)이나 카카오내비 앱의 주행 안전 점수가 기준 점수(보통 70점 내지 80점)를 만족할 경우 8%에서 최대 13%까지 즉시 깎아주는 혜택입니다.</li>
+            <li><strong>커넥티드카 할인:</strong> 쉐보레의 마이링크 시스템이나 해당 연동 기술이 탑재되어 스마트 제어가 가능한 모델은 실시간 사고 통보 장치 장착이 인정되어 요금의 일부를 경감해 줍니다.</li>
+            <li><strong>블랙박스 장착 할인:</strong> 차량에 장착된 블랙박스의 전경 사진과 내장 사진을 촬영하여 신청하면 즉각 반영되는 가장 기본적인 할인 방법입니다.</li>
+            <li><strong>자녀 할인 특약:</strong> 만 6세 이하의 자녀가 있거나 태아가 있는 부부 한정 가입자에게 추가적인 감면을 선사하는 든든한 혜택입니다.</li>
+        </ul>
+    </section>
+
+    <section id="community">
+        <h2>4. 자동차 커뮤니티(디시, 보배드림, 펨코 등) 내돈내산 리얼 후기 분석</h2>
+        <p>네이버 지식인이나 구글 검색, 혹은 유튜브 채널과 더불어 신뢰성 높은 차량 커뮤니티인 디시인사이드 자동차 갤러리, 보배드림, 에펨코리아(펨코) 등에는 더 뉴 스파크 보험료와 관련된 다양한 실제 계약 내돈내산 경험담과 할인 좌표 정보가 매일 공유되고 있습니다. 그중에서도 20대와 첫차 구매자들에게 핵심이 되는 알짜배기 후기를 보기 쉽게 요약해 드립니다.</p>
+
+        <h3>4-1. 부모님 공동명의를 활용한 첫차 할인 성지 후기</h3>
+        <p>보배드림의 한 사용자는 만 23세 신규 가입 시 본인 단독 명의로 더 뉴 스파크 보험료를 계산했더니 180만원이라는 과도한 요금이 산출되어 당황했다고 전했습니다. 그러나 커뮤니티 조언을 받아 차량의 명의를 부모님 99%, 본인 1%의 공동명의 방식으로 등록한 뒤 피보험자를 부모님으로 지정하고 본인을 운전자 추가(지정 1인)로 설계했더니 동일 조건에서 연간 80만원대로 요금이 가파르게 떨어졌다는 내돈내산 후기가 큰 관심을 끌었습니다. 이 방법을 사용하는 경우 본인의 무사고 운전 경력도 함께 인정받을 수 있는 제도가 마련되어 있어 추후 3년 뒤 독립 시점에 큰 폭의 세이브 효과를 누릴 수 있습니다.</p>
+
+        <h3>4-2. 다이렉트 비교 사이트 검색 및 가입 사은품 활용 팁</h3>
+        <p>에펨코리아 자동차 게시판의 정보글에 따르면 각 보험사 공식 고객센터를 통해 가입하는 것보다, 토스 어플이나 네이버페이, 카카오페이 등 제휴 금융 플랫폼의 혜택 이벤트를 경유하는 것이 현명하다고 조언합니다. 이 경우 가입 시점에 따라 네이버페이 포인트나 주유 상품권, 혹은 현금지원 성격의 모바일 사은품 혜택을 3만원에서 5만원까지 수령할 수 있기 때문에 이 좌표를 미리 확인하고 진입하는 것이 실질적인 할인율을 높이는 노하우입니다.</p>
+    </section>
+
+    <section id="ai-tech">
+        <h2>5. 생성형 AI 비서 및 핀테크 모바일 앱을 통한 스마트한 요금 설계</h2>
+        <p>2026년 기준, 최신 제미나이(Gemini)나 챗지피티(ChatGPT) 같은 생성형 인공지능(AI) 플랫폼의 기술 발전으로 인해 개인의 운전 성향과 거주 지역, 사고 이력을 단순 입력하는 것만으로도 나에게 가장 적합한 자동차 요금제를 순식간에 컨설팅받을 수 있는 시대가 열렸습니다. 인공지능을 바탕으로 설계된 전용 어플을 다운로드 받아 실행하면 직접 여러 사이트를 뒤적거릴 필요 없이 신규 최저가 상품을 실시간 순위 정보로 받아볼 수 있습니다.</p>
+
+        <h3>5-1. 스마트 자가 계산기 활용의 이점</h3>
+        <p>과거에는 주민등록번호를 입력하고 일일이 전화를 받아 상담원과 조율하는 과정에서 원치 않는 가입 권유 전화를 받아야 하는 불편함이 있었습니다. 그러나 최근에 정착된 인터넷 간편 계산기와 금융 포털 서비스는 개인 정보를 엄격하게 보호하면서도 가상 데이터 분석을 통해 가장 가성비가 높은 전용 상품을 자동 추출해 줍니다. 나아가 국세청 홈택스와 연동하여 사업자 손비 처리를 위한 비용 영수증 처리 가이드라인까지 한눈에 도출해 주어 자영업자들의 자가 컨설팅에도 막강한 편의성을 선사합니다.</p>
+        
+        <h3>5-2. 신뢰성 높은 외부 공인 사이트 리스트</h3>
+        <p>더 뉴 스파크의 상세 부품 사양, 경차 안전 요율 규정, 소비자 권익 정보 등을 면밀하게 확인하시려면 아래의 공인된 공식 외부 기관 사이트를 참고하시는 것을 적극 추천드립니다.</p>
+        <ul>
+            <li><a href="https://directccheckx.reliabledone.com" target="_blank" rel="noopener">자동차보험 다이렉트 진단 서비스</a> (연령 및 차종에 따른 다이렉트 최저가 맞춤 분석 가이드 사이트)</li>
+            <li><a href="https://namu.wiki/w/%EC%85%B0%EB%B3%B4%EB%A0%88%20%EC%8A%A4%ED%8C%8C%ED%81%AC" target="_blank" rel="noopener">나무위키 - 쉐보레 스파크</a> (스파크 전 모델의 상세 제원, 연식별 변천사 및 중고차 거래 트렌드)</li>
+            <li><a href="https://www.fss.or.kr" target="_blank" rel="noopener">금융감독원 공식 웹사이트</a> (대한민국 금융위원회 소속 금융감독기관의 공신력 있는 금융 소비자 권익보호 및 보험 정책 정보)</li>
+        </ul>
+    </section>
+
+    <section id="consultation">
+        <h2>6. 2026년 신규 가입 혜택 연계 실시간 견적 및 맞춤 상담 신청</h2>
+        <p>더 뉴 스파크 보험료는 본인의 구체적인 이력에 맞춰 모바일 설계와 특약 옵션을 어떻게 설정하느냐가 최종 견적금액의 당락을 결정짓습니다. 2026년 한정으로 제공되는 보험사별 신규 주유 상품권 지급 및 캐시백 혜택 정보가 포함된 최저가 비교 견적서를 무상으로 송부해 드립니다. 아래 입력란을 성실하게 기재하여 신청해 주시면 최적화 분석 자료를 신속하게 전달해 드리겠습니다. 신청 과정에서 수수료는 일절 청구되지 않습니다.</p>
+
+        <form id="consult-survey-form">
+            <div class="form-section-title">가입자 인적사항 입력</div>
+            
+            <label for="usr-name">성함<span class="required-mark">필수</span></label>
+            <input type="text" id="usr-name" name="usr_name" placeholder="홍길동" required>
+
+            <label for="usr-phone">연락처<span class="required-mark">필수</span></label>
+            <input type="tel" id="usr-phone" name="usr_phone" placeholder="010-1234-5678" required>
+
+            <label for="usr-email">이메일 주소</label>
+            <input type="email" id="usr-email" name="usr_email" placeholder="gildong@naver.com">
+
+            <label for="usr-age">가입자 연령 만 나이 선택<span class="required-mark">필수</span></label>
+            <select id="usr-age" name="usr_age" required>
+                <option value="">나이 구간을 선택해 주세요</option>
+                <option value="under24">만 24세 미만 (초기 높은 요율 대상)</option>
+                <option value="under26">만 24세 이상 ~ 만 26세 미만</option>
+                <option value="under30">만 26세 이상 ~ 만 30세 미만</option>
+                <option value="over30">만 30세 이상 (가장 합리적인 혜택 구간)</option>
+            </select>
+
+            <div class="form-section-title">상세 차량 사양 및 계약 요율 조율</div>
+
+            <label for="spark-year">소유 중인 스파크 세부 모델식</label>
+            <select id="spark-year" name="spark_year">
+                <option value="the-new-premium">더 뉴 스파크 프리미어 등급 (2018년 ~ 2022년식)</option>
+                <option value="the-new-basic">더 뉴 스파크 LS / LT 등급 (2018년 ~ 2022년식)</option>
+                <option value="the-next">더 넥스트 스파크 (2015년 ~ 2018년식)</option>
+                <option value="old-spark">스파크 이전 연식 모델 / 마티즈 시리즈</option>
+            </select>
+
+            <label for="drive-range">보험 가입 운전자 적용 범위 선택<span class="required-mark">필수</span></label>
+            <select id="drive-range" name="drive_range" required>
+                <option value="">누가 운행하는지 선택해 주세요</option>
+                <option value="only-one">기명 피보험자 1인 한정 (가장 저렴)</option>
+                <option value="couple">부부 한정 특약</option>
+                <option value="parent-child">부모님 명의 공동 지분 운전자 추가</option>
+                <option value="family">가족 전체 운행 범위 한정</option>
+                <option value="anyone">누구나 운전 가능 지정 (가장 비쌈)</option>
+            </select>
+
+            <label for="safety-option">보유 중인 첨단 안전 사양 체크</label>
+            <select id="safety-option" name="safety_option">
+                <option value="full">전방 충돌 완화 장치 및 차선 이탈 방지 센서 모두 탑재</option>
+                <option value="only-blackbox">기본 블랙박스 장착 차량</option>
+                <option value="none">수동 제어 위주 / 일반 주행 사양</option>
+            </select>
+
+            <label for="custom-request">추가 희망 할인 특약 및 요청 사항</label>
+            <textarea id="custom-request" name="custom_request" placeholder="주행거리 특약 설계 요구, 무사고 이력 인정 여부, 제휴 주유 상품권 지급 이벤트 여부 등 궁금하신 점을 편하게 남겨주세요."></textarea>
+
+            <button type="submit" class="btn-cta">최적 요금 비교 분석 요청하기</button>
+        </form>
+    </section>
+
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('consult-survey-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                alert('고객님의 더 뉴 스파크 맞춤 비교 상담 접수가 안전하게 완료되었습니다. 담당자가 순차적으로 카카오톡 혹은 전화를 통해 자세한 견적서를 송부해 드리겠습니다.');
+                form.reset();
+            });
+        });
+    </script>
+  
